@@ -9,3 +9,7 @@ data/
 .idea/modules.xml
 .idea/vcs.xml
 .idea
+model
+Pipfile
+.vscode/settings.json
+samples.txt
