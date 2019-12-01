@@ -17,6 +17,7 @@ def build_files(data_path, tokenized_data_path, num_pieces, full_tokenizer, min_
         print('reading lines')
         lines = json.load(f)
         lines = [line.replace('\n', ' [SEP] ') for line in lines]  # 用[SEP]表示换行, 段落之间使用SEP表示段落结束
+    print("finsh load raw data")
     all_len = len(lines)
     if not os.path.exists(tokenized_data_path):
         os.mkdir(tokenized_data_path)
@@ -35,6 +36,7 @@ def build_files(data_path, tokenized_data_path, num_pieces, full_tokenizer, min_
         with open(tokenized_data_path + 'tokenized_train_{}.txt'.format(i), 'w') as f:
             for id in full_line:
                 f.write(str(id) + ' ')
+        print("finish write {} pieces".format(i))
     print('finish')
 
 
