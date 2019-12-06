@@ -36,3 +36,38 @@ def read_news_json(data_path):
             line = fp.readline()
     print("There are {} lines content.".format(len(lines)))
     return lines
+
+
+def read_small_vocab(data_path):
+    """
+    read json like this
+    ["第一篇文章的正文", "第二篇文章的正文", "第三篇文章的正文"]
+    """
+    with open(data_path, "r", encoding="utf8") as f:
+        print("reading lines")
+        lines = json.load(f)
+        lines = [line for line in lines]
+        print("finsh load raw data")
+        return lines
+
+
+def read_news_vocab(data_path):
+    """
+    read json like this
+    {"news_id": "411086456", 
+    "keywords": "英国石油公司发现巨型油田 股价飙升3倍！", 
+    "desc": "英国石油天然气投资公司(UKOG)9日说，英格兰南部地底***", 
+    "title": "英国石油公司发现巨型油田 股价飙升3倍！", 
+    "source": "移动中金在线", 
+    "time": "04-10 15:15", 
+    "content": "英国石油天然气投资公司(UKOG)9日说，英格兰南部地底探测到规模巨大的油田，石油储量***"}
+    """
+    lines = []
+    with open(data_path, "r", encoding="utf8") as fp:
+        line = fp.readline()
+        while line:
+            item = json.loads(line)
+            lines.append(item["content"])
+            line = fp.readline()
+    print("There are {} lines content.".format(len(lines)))
+    return lines
