@@ -12,7 +12,7 @@ import thulac
 
 from tqdm import tqdm
 from keras.preprocessing.text import Tokenizer
-from utils.read_file import read_news_vocab, read_small_vocab
+from read_file import read_news_vocab, read_small_vocab
 
 
 def main():
