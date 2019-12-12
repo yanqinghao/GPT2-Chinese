@@ -71,10 +71,8 @@ def read_news_vocab(data_path, lac):
             cut_item = lac.cut(item["content"], text=True)
             lines.append(cut_item)
             line = fp.readline()
-            if count % 10000:
-                print(
-                    "There are {} lines content already processed.".format(count)
-                )
+            if count % 10000 == 0:
+                print("There are {} lines content already processed.".format(count))
             count += 1
 
     print("There are {} lines content.".format(len(lines)))
