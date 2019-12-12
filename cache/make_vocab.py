@@ -41,13 +41,7 @@ def main():
     print("args:\n" + args.__repr__())
     print("This script is extremely slow especially for large corpus. Take a break.")
 
-    lines = read_news_vocab(args.raw_data_path)
-    for i, line in enumerate(tqdm(lines)):
-        try:
-            lines[i] = lac.cut(line, text=True)
-        except:
-            print(line)
-            lines[i] = line
+    lines = read_news_vocab(args.raw_data_path, lac)
 
     tokenizer.fit_on_texts(lines)
     vocab = list(tokenizer.index_word.values())

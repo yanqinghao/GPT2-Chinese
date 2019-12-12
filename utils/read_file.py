@@ -51,7 +51,7 @@ def read_small_vocab(data_path):
         return lines
 
 
-def read_news_vocab(data_path):
+def read_news_vocab(data_path, lac):
     """
     read json like this
     {"news_id": "411086456", 
@@ -65,9 +65,17 @@ def read_news_vocab(data_path):
     lines = []
     with open(data_path, "r", encoding="utf8") as fp:
         line = fp.readline()
+        count = 0
         while line:
             item = json.loads(line)
-            lines.append(item["content"])
+            cut_item = lac.cut(item["content"], text=True)
+            lines.append(cut_item)
             line = fp.readline()
+            if count % 10000:
+                print(
+                    "There are {} lines content already processed.".format(len(count))
+                )
+            count += 1
+
     print("There are {} lines content.".format(len(lines)))
     return lines
