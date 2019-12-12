@@ -43,7 +43,11 @@ def main():
 
     lines = read_news_vocab(args.raw_data_path)
     for i, line in enumerate(tqdm(lines)):
-        lines[i] = lac.cut(line, text=True)
+        try:
+            lines[i] = lac.cut(line, text=True)
+        except:
+            print(line)
+            lines[i] = line
 
     tokenizer.fit_on_texts(lines)
     vocab = list(tokenizer.index_word.values())
