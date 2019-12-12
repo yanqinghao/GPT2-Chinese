@@ -73,7 +73,7 @@ def read_news_vocab(data_path, lac):
             line = fp.readline()
             if count % 10000:
                 print(
-                    "There are {} lines content already processed.".format(len(count))
+                    "There are {} lines content already processed.".format(count)
                 )
             count += 1
 
